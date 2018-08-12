@@ -1,0 +1,611 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+
+<head>
+  <meta charset="utf-8"></meta>
+  <title>Mi Aguila</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+  <meta name="description" content="" ></meta>
+  <meta name="author" content="" ></meta>
+
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet" ></link>
+  <link href="resorces/css/bootstrap.css" rel="stylesheet" type="text/css"></link>
+  <link href="resorces/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+  <link href="resorces/css/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"/>
+  <link href="resorces/css/jcarousel.css" rel="stylesheet" type="text/css"/>
+  <link href="resorces/css/flexslider.css" rel="stylesheet" type="text/css"/>
+  <link href="resorces/css/slitslider.css" rel="stylesheet" type="text/css"/>
+  <link href="resorces/css/style.css" rel="stylesheet" type="text/css"/>
+  
+  
+  
+  
+  <link id="t-colors" href="skins/default.css" rel="stylesheet" ></link>
+  <!-- boxed bg -->
+  <link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css"></link>
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png"></link>
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png"></link>
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png"></link>
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png"></link>
+  <link rel="shortcut icon" href="resorces/ico/icon.ico" />
+
+ 
+
+ 
+</head>
+
+<h:body>
+  
+    <br></br>
+  <div id="wrapper">
+   
+    <header>
+      <div class="container">
+        <div class="row nomargin">
+          <div class="span12">
+            <div class="headnav">
+              <ul>
+                <li><a href="#miRegistro" data-toggle="modal"><i class="icon-user"></i> Registrate</a></li>
+                <li><a href="#mySignin" data-toggle="modal">Iniciar Sesion</a></li>
+              </ul>
+            </div>
+            <!-- Signup Modal -->
+            <div id="miRegistro" class="modal styled hide fade" >
+                <div class="modal-header" style="background-color: darkturquoise;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="mySignupModalLabel">Registrate en  <strong> Nuestro Blog</strong></h4>
+              </div>
+              <div class="modal-body">
+                <!--<form class="form-horizontal">-->
+
+                <f:view>
+                    <h:form id="form" style="width: 80px;">
+                        <p:growl id="msgs" showDetail="true" />
+                        
+                        <p:panelGrid columns="2">
+                           
+                            <p:outputLabel value="Nombre:" for="nombre" />
+                            <p:inputText id="nombre" value="#{controladorUsuario.usuario.nombre}" title="Nombre" required="true" />
+                            <p:outputLabel value="Foto:" for="foto" />
+                            <p:inputText id="foto" value="#{controladorUsuario.usuario.foto}" title="Foto" />
+                           
+                            <p:outputLabel value="FechaNacimiento:" for="fechaNacimiento" />
+                            <p:calendar id="fechaNacimiento" value="#{controladorUsuario.usuario.fechaNacimiento}"/>
+                            
+                            
+                            <p:outputLabel value="Correo:" for="correo" />
+                            <p:inputText id="correo" value="#{controladorUsuario.usuario.correo}" title="Correo" />
+                            <p:outputLabel value="Contraseña:" for="contraseña" />
+                            <p:password id="contraseña" value="#{controladorUsuario.usuario.contraseña}" title="Contraseña" />
+                        </p:panelGrid>
+                        <h:commandButton id="btnRegistrarUsuario" value="Registrar" action="#{controladorUsuario.registrarUsuario()}" style="border-radius: 8px;margin-top: 10px;margin-top: 12px;width: 118px;background-color: lightseagreen;font-size: 16px;"/>
+                   
+                   
+                    
+                    
+                    </h:form>
+                </f:view>
+
+
+           
+                  
+                </div>
+              </div>
+            </div>
+            <!-- end signup modal -->
+            <!-- Sign in Modal -->
+            <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
+              <div class="modal-header" style="background-color: darkturquoise;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="mySigninModalLabel">Inicia <strong>Sesion</strong></h4>
+              </div>
+              <div class="modal-body">
+                
+                  
+                  <f:view>
+                      
+                          
+                      <h:form style="margin-left: 80px;">
+                          <p:panelGrid columns="2">
+                              
+                              <p:outputLabel value="Usuario:" for="nombre" />
+                              <p:inputText id="nombre" value="#{controladorSesion.nombre}" title="Nombre" required="true" />
+                              
+                              <p:outputLabel value="Contraseña:" for="contraseña" />
+                              <p:password id="contraseña" value="#{controladorSesion.contraseña}" title="Contraseña" required="true"></p:password>
+                              <h:commandButton value="Iniciar Sesion" action="#{controladorSesion.iniciarSesion()}" style="border-radius: 8px;margin-top: 10pxx;margin-top: 12px;width: 118px;background-color: lightseagreen;font-size: 16px"/>
+                       
+                          </p:panelGrid>
+                      </h:form>
+                          
+                          
+                  </f:view>
+              </div>
+            </div>
+            <!-- end signin modal -->
+            <!-- Reset Modal -->
+            <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal">
+                  <div class="control-group">
+                    <label class="control-label" for="inputResetEmail">Email</label>
+                    <div class="controls">
+                      <input type="text" id="inputResetEmail" placeholder="Email"></input>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn">Reset password</button>
+                    </div>
+                    <p class="aligncenter margintop20">
+                      We will send instructions on how to reset your password to your inbox
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- end reset modal -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="span4">
+            <div class="logo">
+                <a href="index.html"><img src="resorces/ico/icon.png" style="width: 120px;" alt="" class="logo"></img></a>
+              <h1>Opina sobre sobre nuestro trabajo en equipo.</h1>
+            </div>
+          </div>
+   </div>
+        
+</header>
+    </div>
+    <!-- end header -->
+    <br></br>
+    
+    
+        
+               
+             
+           
+            <!-- end signup modal -->
+            <!-- Sign in Modal -->
+            <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
+              <div class="modal-header" style="background-color: darkturquoise;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="mySigninModalLabel">Inicia <strong>Sesion</strong></h4>
+              </div>
+              <div class="modal-body">
+                
+                  
+                  <f:view>
+                      
+                          
+                      <h:form style="margin-left: 80px;">
+                          <p:panelGrid columns="2">
+                              
+                              <p:outputLabel value="Usuario:" for="nombre" />
+                              <p:inputText id="nombre" value="#{controladorSesion.nombre}" title="Nombre" required="true" />
+                              
+                              <p:outputLabel value="Contraseña:" for="contraseña" />
+                              <p:password id="contraseña" value="#{controladorSesion.contraseña}" title="Contraseña" required="true"></p:password>
+                              <h:commandButton value="Iniciar Sesion" action="#{controladorSesion.iniciarSesion()}" style="border-radius: 8px;margin-top: 10pxx;margin-top: 12px;width: 118px;background-color: lightseagreen;font-size: 16px"/>
+                       
+                          </p:panelGrid>
+                      </h:form>
+                          
+                          
+                  </f:view>
+
+    
+          </div>
+   </div>
+    
+    
+    
+    
+    
+    
+    <section id="featured">
+      <!-- start slider -->
+      <div id="slider" class="sl-slider-wrapper demo-2">
+        <div class="sl-slider">
+          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+            <div class="sl-slide-inner">
+              <div class="bg-img bg-img-1">
+              </div>
+              <h2><strong>Mi Águila,</strong> servicio de una mejor movilidad</h2>
+              <blockquote>
+                <p>
+                  Mi Águila presta sus servicios en diferentes ciudades.
+                </p>
+   
+              </blockquote>
+            </div>
+          </div>
+          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+            <div class="sl-slide-inner">
+              <div class="bg-img bg-img-2">
+              </div>
+              <h2><strong>Un transporte de </strong> lujo legal</h2>
+              <blockquote>
+                <p>
+                 Empresa de transporte con soporte tecnológico.
+                </p>
+               
+              </blockquote>
+            </div>
+          </div>
+          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+            <div class="sl-slide-inner">
+              <div class="bg-img bg-img-3">
+              </div>
+              <h2><strong>Nueva aplicación </strong>para mejorar la movilidad</h2>
+              <blockquote>
+                <p>
+                  Mejor servios encontraras a la hora de transportarte y con alta tecnologia.
+                </p>
+                
+              </blockquote>
+            </div>
+          </div>
+          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
+            <div class="sl-slide-inner">
+              <div class="bg-img bg-img-4">
+              </div>
+              <h2><strong>Mejor </strong> Soporte</h2>
+              <blockquote>
+                <p>
+                  Estamos para brindarte soporte en el momento que desees.
+                </p>
+                
+              </blockquote>
+            </div>
+          </div>
+        
+        </div>
+        <!-- /sl-slider -->
+        <nav id="nav-dots" class="nav-dots">
+          <span class="nav-dot-current"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </nav>
+      </div>
+      <!-- /slider-wrapper -->
+      <!-- end slider -->
+    </section>
+    <section class="callaction">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="big-cta">
+              <div class="cta-text">
+                <h3>Puedes publicar tus opiniones <span class="highlight"><strong> Hacer comentarios</strong></span> y me gusta!</h3>
+              </div>
+              <div class="cta floatright">
+                  
+                  <a class="btn btn-large btn-theme btn-rounded" href="#miRegistro" data-toggle="modal" >Registrar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="row">
+              
+              <div class="span6">
+                <div class="box aligncenter">
+                  <div class="aligncenter icon">
+                    <i class="icon-desktop icon-circled icon-64 active"></i>
+                  </div>
+                  <div class="text">
+                    <h6>Brindando Excelente Tecnología</h6>
+                    <p>
+                      Con nuestra tecnologia puede ahorrar tiempo y dinero.
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="span6">
+                <div class="box aligncenter">
+                  <div class="aligncenter icon">
+                    <i class="icon-briefcase icon-circled icon-64 active"></i>
+                  </div>
+                  <div class="text">
+                    <h6>Trabajo en Equipo</h6>
+                    <p>
+                      Trabajamos unidos para una mejor movilidad.
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+        <!-- Portfolio Projects -->
+        <div class="row">
+          <div class="span12">
+            <h4 class="heading">Conoce sobre <strong>Nosotros</strong></h4>
+            <div class="row">
+              <section id="projects">
+                <ul id="thumbs" class="portfolio">
+                  <!-- Item Project and Filter Name -->
+                  <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
+                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="resorces/img/aguila1.jpg">
+						<span class="overlay-img"></span>
+						<span class="overlay-img-thumb font-icon-plus"></span>
+						</a>
+                    <!-- Thumb Image and Description -->
+                    <img src="resorces/img/aguila1.jpg" alt="En Bogotá actualmente circulan cerca de dos millones de carros particulares"></img>
+                  </li>
+                  <!-- End Item Project -->
+                  <!-- Item Project and Filter Name -->
+                  <li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
+                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="resorces/img/celu.jpg">
+						<span class="overlay-img"></span>
+						<span class="overlay-img-thumb font-icon-plus"></span>
+						</a>
+                    <!-- Thumb Image and Description -->
+                    <img src="resorces/img/celu.jpg" alt="Mi Águila, es una aplicación cien por ciento colombiana que tiene la idea de mejorar la movilidad en Bogotá."></img>
+                  </li>
+                  <!-- End Item Project -->
+                  <!-- Item Project and Filter Name -->
+                  <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
+                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="resorces/img/aguila.jpg">
+						<span class="overlay-img"></span>
+						<span class="overlay-img-thumb font-icon-plus"></span>
+						</a>
+                    <!-- Thumb Image and Description -->
+                    <img src="resorces/img/aguila.jpg" alt="Cerca de 45 universidades y más de 200 empresas se unieron a la aplicación."></img>
+                  </li>
+                  <!-- End Item Project -->
+                  <!-- Item Project and Filter Name -->
+                  <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
+                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
+                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="resorces/img/cond.jpg">
+						<span class="overlay-img"></span>
+						<span class="overlay-img-thumb font-icon-plus"></span>
+						</a>
+                    <!-- Thumb Image and Description -->
+                    <img src="resorces/img/cond.jpg" alt="Reducir la contaminación y ofrecer un transporte seguro y sin las congestiones del servicio público."></img>
+                  </li>
+                  <!-- End Item Project -->
+                  <!-- Item Project and Filter Name -->
+    
+                  <!-- End Item Project -->
+                </ul>
+              </section>
+            </div>
+          </div>
+        </div>
+        
+        
+         <div class="comment-area">
+              <h4>Comentarios</h4>
+              <div class="media">
+                <a href="#" class="thumbnail pull-left"><img src="resorces/img/avatar.png" alt="" /></a>
+                <div class="media-body">
+                  <div class="media-content">
+                    <h6><span>March 12, 2013</span> Karen medisson</h6>
+                    <p>
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </p>
+                    <a href="#" class="align-right">Reply comment</a>
+                  </div>
+                </div>
+              </div>
+              <div class="media">
+                <a href="#" class="thumbnail pull-left"><img src="resorces/img/avatar.png" alt="" /></a>
+                <div class="media-body">
+                  <div class="media-content">
+                    <h6><span>March 12, 2013</span> Smith sanderson</h6>
+                    <p>
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </p>
+                    <a href="#" class="align-right">Reply comment</a>
+                  </div>
+                  <div class="media">
+                    <a href="#" class="thumbnail pull-left"><img src="resorces/img/avatar.png" alt="" /></a>
+                    <div class="media-body">
+                      <div class="media-content">
+                        <h6><span>March 12, 2013</span> Thomas guttenberg</h6>
+                        <p>
+                          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </p>
+                        <a href="#" class="align-right">Reply comment</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="media">
+                <a href="#" class="thumbnail pull-left"><img src="resorces/img/avatar.png" alt="" /></a>
+                <div class="media-body">
+                  <div class="media-content">
+                    <h6><span>March 12, 2013</span> Vicky lumora</h6>
+                    <p>
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </p>
+                    <a href="#" class="align-right">Reply comment</a>
+                  </div>
+                </div>
+              </div>
+     </div>
+        
+        
+        <!-- End Portfolio Projects -->
+        <!-- divider -->
+        <div class="row">
+          <div class="span12">
+            <div class="solidline">
+            </div>
+          </div>
+        </div>
+        <!-- end divider -->
+      
+      </div>
+    </section>
+    <section id="bottom">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="aligncenter">
+              <div id="twitter-wrapper">
+                <div id="twitter">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+   
+    
+    
+ 
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span3">
+            <div class="widget">
+              <h5 class="widgetheading">Browse pages</h5>
+              <ul class="link-list">
+                <li><a href="#">About our company</a></li>
+                <li><a href="#">Our services</a></li>
+                <li><a href="#">Meet our team</a></li>
+                <li><a href="#">Explore our portfolio</a></li>
+                <li><a href="#">Get in touch with us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="widget">
+              <h5 class="widgetheading">Important stuff</h5>
+              <ul class="link-list">
+                <li><a href="#">Press release</a></li>
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">Career center</a></li>
+                <li><a href="#">Flattern forum</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="widget">
+              <h5 class="widgetheading">Flickr photostream</h5>
+              <div class="flickr_badge">
+                <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03"></script>
+              </div>
+              <div class="clear">
+              </div>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="widget">
+              <h5 class="widgetheading">Get in touch with us</h5>
+              <address>
+								<strong>Flattern studio, Pte Ltd</strong><br>
+								 Springville center X264, Park Ave S.01</br>
+								 Semarang 16425 Indonesia
+					 		</address>
+              <p>
+                <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br></br>
+                <i class="icon-envelope-alt"></i> email@domainname.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sub-footer">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p>
+                  <span>&copy; Flattern - All right reserved.</span>
+                </p>
+                <div class="credits">
+                 
+                  Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+              </div>
+            </div>
+            <div class="span6">
+              <ul class="social-network">
+                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest icon-square"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Google plus"><i class="icon-google-plus icon-square"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+ 
+  
+  
+  
+  <script src="resorces/js/jquery.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="resorces/js/bootstrap.js" type="text/javascript"></script>
+  <script src="resorces/js/jcarousel/jquery.jcarousel.min.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.fancybox-media.js" type="text/javascript"></script>
+  <script src="resorces/js/google-code-prettify/prettify.js" type="text/javascript"></script>
+  <script src="resorces/js/portfolio/jquery.quicksand.js" type="text/javascript"></script>
+  <script src="resorces/js/portfolio/setting.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.flexslider.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.nivo.slider.js" type="text/javascript"></script>
+  <script src="resorces/js/modernizr.custom.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.ba-cond.min.js" type="text/javascript"></script>
+  <script src="resorces/js/jquery.slitslider.js" type="text/javascript"></script>
+  <script src="resorces/js/animate.js" type="text/javascript"></script>
+  
+ 
+  <!-- Template Custom JavaScript File -->
+  <script src="resorces/js/custom.js" type="text/javascript"></script>
+
+</h:body>
+
+</html>
+
+    
+
